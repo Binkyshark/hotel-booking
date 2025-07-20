@@ -1,11 +1,15 @@
 import bcrypt from "bcryptjs";
 import { UserModel } from '../models/user.model.js';
 import { createToken } from '../utils/createtoken.js';
+
+
 export const registeruser = async (data) => {
     const hashedPassword = await bcrypt.hash(data.password, 10);
     const newuser = new UserModel({...data, password: hashedPassword});
     return await newuser.save();
 };
+
+
 export const loginuser = async (email , password) => {
     const user = await UserModel.findOne({ email });
     if (!user) {

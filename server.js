@@ -13,9 +13,9 @@ const app = express();
 app.use(express.json());
 connectDB();
 
+app.use('/api/auth', authRoutes);
 app.use('/api/hotels', hotelRoutes);
 app.use('/api/rooms', roomRoutes);
-app.use('/api/auth', authRoutes);
 app.use('/api/bookings', bookingRoutes);
 
 app.get('/', (req, res) => {
