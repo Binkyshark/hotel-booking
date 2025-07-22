@@ -1,4 +1,4 @@
-import {} from "../services/"
+import {adminRegister, adminLogin} from "../services/auth.service.js"
 
 
 export const adminRegister = async (req, res) => {

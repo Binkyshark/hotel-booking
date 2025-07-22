@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post('/register',validation.registerValidation, register);
 router.post('/login', validation.loginValidation, login);
+
 router.post('/signup-admin',validation.registerValidation, adminRegister)
 router.post('/login-admin',validation.loginValidation, adminLogin)
 
