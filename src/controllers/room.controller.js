@@ -3,22 +3,31 @@ import Hotel from "../models/hotel.model.js";
 
 export const createRoom = async (req, res) => {
   const hotelId = req.params.hotelid;
-  const newRoom = new RoomModel(req.body);
+  const imageUrl = req.file?.path;
+
+  if (!imageUrl) {
+    return res.status(400).json({ error: "Image is required" });
+  }
 
   try {
+    const newRoom = new RoomModel({
+      ...req.body,
+      image: imageUrl,  
+      hotel: hotelId 
+    });
+
     const savedRoom = await newRoom.save();
-    try {
-      await Hotel.findByIdAndUpdate(hotelId, {
-        $push: { rooms: savedRoom._id },
-      });
-    } catch (err) {
-      res.status(500).json(err);
-    }
+
+    await Hotel.findByIdAndUpdate(hotelId, {
+      $push: { rooms: savedRoom._id },
+    });
+
     res.status(200).json(savedRoom);
   } catch (err) {
     res.status(500).json(err);
   }
 };
+
 export const getALLRoom = async (req, res) => {
   try {
     const room = await RoomModel.find();
