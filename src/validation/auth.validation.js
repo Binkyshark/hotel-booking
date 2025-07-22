@@ -21,7 +21,11 @@ export const loginValidation = (data) => {
 
 
 
+export const adminLogin = (data) =>{
+    
+}
 
+export const adminRegister = (data) => {
 
-
+}
 
