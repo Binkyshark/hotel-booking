@@ -1,19 +1,19 @@
-import {adminRegister, adminLogin} from "../services/auth.service.js"
 
+import { adminRegister as registerService, adminLogin as loginService } from "../services/auth.service.js";
 
-export const adminRegister = async (req, res) => {
+export const handleAdminRegister = async (req, res) => {
     try {
-        const admin = await adminRegister(req.body);
-        req.status(201).json(admin);
+        const admin = await registerService(req.body);
+        res.status(201).json(admin);
     } catch (error) {
-        res.status(500).json({error: error.message })
+        res.status(500).json({ error: error.message });
     }
 };
 
-export const adminLogin = async (req, res)=>{
+export const handleAdminLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const { user, token } = await loginuser(email, password);
+        const { user, token } = await loginService(email, password);
         res.status(200).json({ user, token });
     } catch (error) {
         res.status(500).json({ error: error.message });

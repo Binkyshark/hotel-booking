@@ -1,14 +1,26 @@
-import Hotel from  "../models/hotel.model.js";
+
+import Hotel from "../models/hotel.model.js";
 
 export const createHotel = async (req, res, next) => {
-    const newHotel = new Hotel(req.body);
-    try {
-        const savedHotel = await newHotel.save();
-        res.status(200).json(savedHotel);
-    } catch (err) {
-        next(err);
+  try {
+    const imageUrl = req.file?.path;
+    if (!imageUrl) {
+      return res.status(400).json({ error: "Hotel image is required" });
     }
+
+    const newHotel = new Hotel({
+      ...req.body,
+      photo: imageUrl,
+    });
+
+    const savedHotel = await newHotel.save();
+    res.status(200).json(savedHotel);
+  } catch (err) {
+    next(err);
+  }
 };
+
+
 
 export const getHotels = async (req, res, next) => {
     try {

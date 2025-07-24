@@ -6,11 +6,10 @@ import {
   getRoom,
   updateRoom,} from "../controllers/room.controller.js";
 
-  import {upload} from "../middlewares/multer.js";
-  import{ uploadToCloudinary } from "../utils/cloudinary.js";
+  import {uploadCloud} from "../middlewares/multer.js";
   const router = express.Router();
 
-  router.post("/:hotelid", upload.single("image") ,createRoom);
+  router.post("/:hotelid", uploadCloud.single("image") ,createRoom);
   router.get("/", getALLRoom);
   router.get("/:id", getRoom);
   router.put("/:id", updateRoom);
