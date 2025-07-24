@@ -20,7 +20,7 @@ const AdminSchema = new mongoose.Schema({
         default: false,
     },
     nationalId:{
-        type: Number,
+        type: String,
         required:true,
         nim: 14,
         max: 14,
