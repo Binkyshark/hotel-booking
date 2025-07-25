@@ -22,14 +22,23 @@ export const createHotel = async (req, res, next) => {
 
 
 
-export const getHotels = async (req, res, next) => {
-    try {
-        const hotels = await Hotel.find();
-        res.status(200).json(hotels);
-    } catch (err) {
-        next(err);
-    }
+export const getHotels = async (req, res) => {
+  const { min, max, city, type, ...others } = req.query;
+
+  try {
+    const hotels = await Hotel.find({
+      ...others,
+      ...(city && { city }),
+      ...(type && { type }),
+      cheapestPrice: { $gte: min || 1, $lte: max || 9999 }
+    });
+
+    res.status(200).json(hotels);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
+
 
 export const countByCity = async (req, res) => {
   const cities = req.query.cities?.split(',');
