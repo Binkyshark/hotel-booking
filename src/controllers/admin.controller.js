@@ -1,5 +1,32 @@
-
 import { adminRegister as registerService, adminLogin as loginService } from "../services/auth.service.js";
+import Hotel from "../models/hotel.model.js";
+import {UserModel} from "../models/user.model.js";
+import {Booking} from "../models/booking.model.js";
+export const countHotels = async (req, res) => {
+  try {
+    const count = await Hotel.countDocuments();
+    res.status(200).json({ totalHotels: count });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+export const countUsers = async (req, res) => {
+  try {
+    const count = await UserModel.countDocuments();
+    res.status(200).json({ totalUsers: count });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+export const countBookings = async (req, res) => {
+  try {
+    const count = await Booking.countDocuments();
+    res.status(200).json({ totalBookings: count });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 
 export const handleAdminRegister = async (req, res) => {
     try {

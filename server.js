@@ -6,7 +6,7 @@ import hotelRoutes from './src/routes/hotel.routes.js';
 import roomRoutes from './src/routes/room.routes.js';
 import authRoutes from './src/routes/auth.routes.js';
 import bookingRoutes from './src/routes/booking.routes.js';
-
+import adminRoutes from './src/routes/admin.routes.js';
 dotenv.config();
 const app = express();
 
@@ -17,7 +17,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/hotels', hotelRoutes);
 app.use('/api/rooms', roomRoutes);
 app.use('/api/bookings', bookingRoutes);
-
+app.use("/api/admin", adminRoutes);
 app.get('/', (req, res) => {
     res.send('Hotel booking api is running');
 });
