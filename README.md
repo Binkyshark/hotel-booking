@@ -23,6 +23,26 @@ This is a Node.js backend RESTful API for a hotel room booking system. It allows
   - Book available rooms
   - See user bookings
 
+## 🔐 Admin Dashboard (API)
+
+This project includes a protected admin dashboard API that provides useful statistics for the system admin.
+
+### ✅ Features:
+- Count total number of hotels
+- Count total number of users
+- Count total number of bookings
+- All routes are protected by admin token
+
+### 🔒 Admin Protected Routes:
+
+| Method | Endpoint                      | Description             |
+|--------|-------------------------------|-------------------------|
+| GET    | `/api/admin/count-hotels`     | Get total number of hotels     |
+| GET    | `/api/admin/count-users`      | Get total number of users      |
+| GET    | `/api/admin/count-bookings`   | Get total number of bookings   |
+
+> 🛡️ These routes require a valid JWT token from a logged-in admin in the header:
+
 ---
 
 ## 🧠 Tech Stack
