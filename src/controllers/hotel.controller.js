@@ -10,7 +10,7 @@ export const createHotel = async (req, res, next) => {
 
     const newHotel = new Hotel({
       ...req.body,
-      photo: imageUrl,
+      photos: [imageUrl],
     });
 
     const savedHotel = await newHotel.save();
